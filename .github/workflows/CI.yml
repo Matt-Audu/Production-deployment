@@ -1,0 +1,60 @@
+name: production-ci
+
+on:
+  pull_request:
+  push: # Because I want to run the tests on only my main branch. For production environment, this won't be here.
+    branches:
+      - main
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.10
+
+      - name: Install dependencies
+        working-directory: backend
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        working-directory: backend
+        run: |
+          source venv/bin/activate
+          pytest --maxfail=1 --disable-warnings
+
+  trivy-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Trivy
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y trivy
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Trivy Config Scan (Dockerfile)
+        run: |
+          trivy config backend/ --exit-code 1 --severity HIGH,CRITICAL
+
+      - name: Build Docker Image
+        run: |
+          docker build -f backend/Dockerfile -t myapp:latest backend/
+
+      - name: Trivy Image Scan
+        run: |
+          trivy image --exit-code 1 --severity HIGH,CRITICAL myapp:latest
+
