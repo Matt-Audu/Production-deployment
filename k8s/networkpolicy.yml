@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend-allow-ingress
+  namespace: production
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        # Allow ingress from ingress controller pods (adjust label selector to match your ingress controller)
+        - namespaceSelector:
+            matchLabels:
+              name: ingress-nginx
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 8000
+
+    - from:
+        # Allow from prometheus (for /metrics if needed)
+        - namespaceSelector:
+            matchLabels:
+              monitoring: "true"
+        - podSelector:
+            matchLabels:
+              app: prometheus
+      ports:
+        - protocol: TCP
+          port: 8000
+
+    - from:
+        # Allow internal kubelet health probes
+        - ipBlock:
+            cidr: 10.0.0.0/8  # Adjust based on your cluster CIDR range
+      ports:
+        - protocol: TCP
+          port: 8000

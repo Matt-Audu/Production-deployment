@@ -19,6 +19,11 @@ async def get_items():
 async def create_item(item: dict):
     return {"message": "Item created", "item": item}
 
+@app.get("/healthz")
+async def healthz():
+    return {"status": "ok"}
+
+
 
 
 
