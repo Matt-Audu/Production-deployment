@@ -5,7 +5,7 @@ import uvicorn
 
 app = FastAPI()
 
-Instrumentator().instrument(app).expose(app)
+Instrumentator().instrument(app).expose(app, include_in_schema=True, should_gzip=True)
 
 @app.get("/health")
 async def health_check():

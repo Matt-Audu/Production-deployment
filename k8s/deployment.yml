@@ -17,9 +17,10 @@ spec:
       labels:
         app: backend
     spec:
+      serviceAccountName: backend-serviceaccount
       containers:
         - name: backend-container
-          image: mattaudu/backend-app:v1.0.1
+          image: mattaudu/backend-app:v1.0.6
           imagePullSecrets:
             - name: dockerhub-secret
           ports:

@@ -1,0 +1,56 @@
+groups:
+  - name: fastapi-backend-alerts
+    rules:
+      - alert: HighCpuUsage
+        expr: sum(rate(container_cpu_usage_seconds_total{namespace="production", pod=~"backend-.*"}[5m])) > 0.8
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage detected on backend pods"
+          description: "CPU usage has been above 80% for more than 2 minutes."
+
+      - alert: HighMemoryUsage
+        expr: sum(container_memory_usage_bytes{namespace="production", pod=~"backend-.*"}) / sum(container_spec_memory_limit_bytes{namespace="production", pod=~"backend-.*"}) > 0.85
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High Memory usage detected on backend pods"
+          description: "Memory usage has been above 85% for more than 2 minutes."
+
+      - alert: BackendPodsDown
+        expr: kube_deployment_status_replicas_unavailable{namespace="production", deployment="backend-deployment"} > 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "One or more backend pods are unavailable"
+          description: "The backend deployment has unavailable replicas."
+
+      - alert: HighHttp5xxErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 1
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High HTTP 5xx error rate"
+          description: "More than 1 HTTP 5xx error per second detected."
+
+      - alert: LivenessProbeFailures
+        expr: kube_pod_container_status_running{namespace="production", pod=~"backend-.*"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Backend pod is not running"
+          description: "One or more backend pods are not in Running state."
+
+      - alert: ReadinessProbeFailures
+        expr: kube_pod_status_ready{namespace="production", condition="true", pod=~"backend-.*"} == 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Backend pod readiness probe failed"
+          description: "One or more backend pods are not ready to receive traffic."

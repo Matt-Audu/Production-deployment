@@ -2,7 +2,6 @@ name: production-ci
 
 on:
   pull_request:
-  push: # Because I want to run the tests on only my main branch. For production environment, this won't be here.
     branches:
       - main
 
@@ -37,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download Trivy
         run: |

@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Build-image:
+  Build_and_Push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
