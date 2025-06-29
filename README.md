@@ -1,3 +1,36 @@
 
+```
+.
+├── README.md
+├── RUNBOOK.md
+├── backend
+│   ├── Dockerfile
+│   ├── main.py
+│   ├── requirements.txt
+│   └── test_main.py
+├── k8s
+│   ├── configmap.yml
+│   ├── deployment.yml
+│   ├── hpa.yml
+│   ├── ingress.yml
+│   ├── networkpolicy.yml
+│   ├── secret.yml
+│   ├── service.yml
+│   └── serviceaccount.yml
+├── monitoring
+│   ├── alerts.yml
+│   ├── grafana-dashboard.json
+│   └── prometheus.yml
+├── scripts
+│   ├── deploy.sh
+│   ├── health-check.sh
+│   └── rollback.sh
+├── security
+│   ├── pod-security.yml
+│   └── rbac.yml
+└── terraform
+    ├── main.tf
+    ├── output.tf
+    └── variable.tf
 
-<pre> ``` /production-deployment ├── Dockerfile # Multi-stage, security-hardened ├── k8s/ # Kubernetes manifests │ ├── deployment.yaml │ ├── service.yaml │ ├── ingress.yaml │ ├── configmap.yaml │ ├── secret.yaml │ ├── networkpolicy.yaml │ ├── hpa.yaml │ └── serviceaccount.yaml ├── .github/workflows/ # CI/CD pipeline │ └── deploy.yml ├── monitoring/ # Observability │ ├── prometheus.yml │ ├── alerts.yml │ └── grafana-dashboard.json ├── scripts/ # Automation │ ├── deploy.sh │ ├── health-check.sh │ └── rollback.sh ├── security/ # Security policies │ ├── pod-security.yaml │ └── rbac.yaml ├── terraform/ # Infrastructure as code (optional) ├── README.md # Deployment guide └── RUNBOOK.md # Operations manual ``` </pre>
+```
