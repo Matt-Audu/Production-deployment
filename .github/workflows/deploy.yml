@@ -34,3 +34,39 @@ jobs:
       - name: "Push to Docker Hub"
         run: |
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/backend-app:${{env.VERSION_NUMBER}}
+
+  # Deploying to EKS Cluster
+  # deploy:
+#   runs-on: ubuntu-latest
+#
+#   steps:
+#     - name: Checkout repo
+#       uses: actions/checkout@v4
+#
+#     - name: Configure AWS credentials
+#       uses: aws-actions/configure-aws-credentials@v4
+#       with:
+#         aws-region: ${{ secrets.AWS_REGION }}
+#         role-to-assume: ${{ secrets.AWS_IAM_ROLE_TO_ASSUME }}
+#         role-session-name: GitHubActionsDeploy
+#
+#     - name: Update kubeconfig for EKS
+#       run: |
+#         aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
+
+
+
+  Deploy:                                                                     
+    needs: Build_and_Push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: SSH and deploy to Minikube server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: 22
