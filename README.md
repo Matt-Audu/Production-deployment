@@ -133,6 +133,8 @@ A quick look at what each monitoring file does:
 
 - **`prometheus.yml`**: The main configuration for Prometheus that tells it **what to monitor**, **where to scrape metrics from**, and **how often to check**. For this project, it scrapes only my backend service for metrics.
 
+#### Grafana Dashboard
+
 ![Grafana Dashboard](https://drive.google.com/uc?export=view&id=15OBJOqmjIPFiCu4RUxojOjVyaT8rtzQ3)
 
 ### Automation Scripts
