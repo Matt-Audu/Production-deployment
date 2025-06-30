@@ -43,7 +43,8 @@ Note: This project was carried out using a minikube cluster for testing purposes
 
 ### Prerequisites
 
----
+- - -
+
 
 1. Docker
 2. Kubernetes Cluster
