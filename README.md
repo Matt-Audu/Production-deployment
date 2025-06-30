@@ -1,8 +1,6 @@
 # Production-Ready Infrastructure Deployment
 
-
 ---
-
 
 This project sets up everything you need to run your application reliably in a production environment. It includes ready-made Kubernetes files, security settings, automation scripts, and monitoring tools to help you deploy, scale, and manage your app with confidence. Whether you’re testing locally on Minikube or rolling out to a real cluster, this setup gives you a solid starting point for modern DevOps and smooth operations.
 
@@ -44,7 +42,6 @@ Note: This project was carried out using a minikube cluster for testing purposes
 ```
 
 ### Prerequisites
-
 
 ---
 
