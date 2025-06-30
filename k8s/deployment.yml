@@ -25,6 +25,9 @@ spec:
             - name: dockerhub-secret
           ports:
             - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: backend-config
           readinessProbe:
             httpGet:
               path: /healthz

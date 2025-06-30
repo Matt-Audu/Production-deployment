@@ -56,7 +56,7 @@ Note: This project was carried out using a minikube cluster for testing purposes
 This project involves containerizing a FastAPI backend service that is scalable and production ready. The application is configured to expose prometheus metrics for observability and monitoring. Built, tested and deployed using GitHub Actions.
 
 ### Multi Stage Build
-Made use of Multi stage build in my docker file that reduced my application size to 260MB. I prioritised the use of slim based images that are lightweight and run faster builds. Configured docker to run the container as `appuser` and not root, which is a best practice for security.
+Made use of Multi stage build in my docker file that reduced my application size to 260MB. I prioritised the use of slim base images that are lightweight and run faster builds. Configured docker to run the container as `appuser` and not root, which is a best practice for security.
 
 ```
 FROM python:3.12-slim AS builder
@@ -96,4 +96,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
   1. After my image has been scanned successfully with no vulnerabilities, my deployment workflow is set up to build and tag my docker images. 
   2. I configured a versioning system to tag my images using the traditional versioning pattern i.e "v1.0.1" which helps to track various images properly for best practice.
   3. Once the image has been tagged, my workflow pushes my image to dockerhub remote repository. 
-  4. Because I decided use a Minikube cluster, my workflow will SSH into my minikube server and run my deployment script to deploy the backend service in my kubernetes cluster.
+  4. Because I decided to use a Minikube cluster, my workflow will SSH into my minikube server and run my deployment script to deploy the backend service in my kubernetes cluster.
+
+
+### Kubernetes Manifest Files
