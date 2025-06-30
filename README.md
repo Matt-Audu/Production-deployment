@@ -52,7 +52,7 @@ Note: This project was carried out using a minikube cluster for testing purposes
 4. Terraform
 5. Bash Scripting
 
-### Overview
+## Overview
 This project involves containerizing a FastAPI backend service that is scalable and production ready. The application is configured to expose prometheus metrics for observability and monitoring. Built, tested and deployed using GitHub Actions.
 
 ### Multi Stage Build
@@ -86,3 +86,5 @@ EXPOSE 8000
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
+### GitHub Actions Workflow
++ Continuous Integration: 
