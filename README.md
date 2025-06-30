@@ -168,6 +168,8 @@ Here’s what each Terraform file does:
 ## Contributing
 
 - Fork the repository
+- Create a feature branch
+- Submit a pull request
 
 
 
