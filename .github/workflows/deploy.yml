@@ -70,3 +70,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: 22
+          script: |
+            chmod +x deploy.sh
+            ./deploy.sh

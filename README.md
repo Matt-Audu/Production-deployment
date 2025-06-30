@@ -87,4 +87,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
 ### GitHub Actions Workflow
-+ [Continuous Integration:](https://github.com/Matt-Audu/Production-deployment/blob/main/.github/workflows/integration.yml) I configured by workflow to run a pytest for testing API endpoints "GET`/items`" "GET`/health`" and "POST`/items`". 
++ [Continuous Integration:](https://github.com/Matt-Audu/Production-deployment/blob/main/.github/workflows/integration.yml) I configured my workflow to run a pytest for testing API endpoints "GET`/items`" "GET`/health`" and "POST`/items`" and if fails the workflow if any test fails. Integrated docker trivy scanner to scan my dockerfile and docker images. The workflow fails if vulnerabilities are detected in my dockerfile and docker images. This will minimize production issues and improve security.
+
++ [Continuous Deployment:](https://github.com/Matt-Audu/Production-deployment/blob/main/.github/workflows/deploy.yml) After my image has been scanned successfully with no vulnerabilities, my deployment workflow is set up to build and tag my docker images. I configured a versioning system to tag my images using the traditional versioning pattern i.e "v1.0.1" which helps to track various images properly for best practice.
+Once the image has been tagged, my workflow pushes my image to dockerhub remote repository. Because I decided use a Minikube cluster, my workflow will SSH into my minikube server and run my deployment script to deploy the backend service in my kubernetes cluster.
