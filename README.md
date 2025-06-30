@@ -135,3 +135,17 @@ A quick look at what each monitoring file does:
 
 ![Grafana Dashboard](https://drive.google.com/uc?export=view&id=15OBJOqmjIPFiCu4RUxojOjVyaT8rtzQ3)
 
+### Automation Scripts
+
+I authored wrapper scripts for automating kubernetes deployment for all my kubernetes manifests ehich makes it easier and faster to deploy. Also wrote rollback scripts to handle failed deployments and reduce downtime. Implemented a production based design to handle downtime, deployment and health check.
+
+A quick look at what each script does:
+
+- **`deploy.sh`**: Runs all the steps needed to deploy my backend service app and Kubernetes resources to the cluster in one go.
+
+- **`health-check.sh`**: Checks if my app and pods are healthy and running as expected, so I know everything is working fine.
+
+- **`rollback.sh`**: If something goes wrong, this script lets you roll back your deployment to the previous stable version easily. By running `./rollback.sh <deployment name>` , my app rolls back to previous working version.
+
+
+
