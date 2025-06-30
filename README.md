@@ -137,6 +137,8 @@ A quick look at what each monitoring file does:
 
 ![Grafana Dashboard](https://drive.google.com/uc?export=view&id=15OBJOqmjIPFiCu4RUxojOjVyaT8rtzQ3)
 
+---
+
 ### Automation Scripts
 
 I authored wrapper scripts for automating kubernetes deployment for all my kubernetes manifests ehich makes it easier and faster to deploy. Also wrote rollback scripts to handle failed deployments and reduce downtime. Implemented a production based design to handle downtime, deployment and health check.
