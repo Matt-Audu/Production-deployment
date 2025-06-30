@@ -120,3 +120,18 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 - **`pod-security.yml`**: Defines rules that control what my pods are allowed to do (for example, restricting running as root), helping keep your cluster safer.
 
 - **`rbac.yml`**: Sets up Role-Based Access Control (RBAC) to manage who (or what) can access specific Kubernetes resources, ensuring only the right accounts have permission.
+
+### Monitoring
+
+I implemented the use of prometheus and Grafana to monitor and visualize metrics from my backend service. Although the full configuration is not here just to maintain project demands. If you want to get a view of the whole configuration click [here](https://github.com/Matt-Audu/Observability-Stack).
+
+A quick look at what each monitoring file does:
+
+- **`alerts.yml`**: Defines alert rules for Prometheus so you get notified when something goes wrong or crosses a threshold (like high CPU or memory usage).
+
+- **`grafana-dashboard.json`**: A pre-made dashboard configuration for Grafana to visualize my backend service key metrics in a clear, beautiful way. This was downloaded from Grafana Labs.
+
+- **`prometheus.yml`**: The main configuration for Prometheus that tells it **what to monitor**, **where to scrape metrics from**, and **how often to check**. For this project, it scrapes only my backend service for metrics.
+
+![Grafana Dashboard](https://drive.google.com/uc?export=view&id=15OBJOqmjIPFiCu4RUxojOjVyaT8rtzQ3)
+
