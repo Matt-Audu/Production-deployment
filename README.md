@@ -42,3 +42,14 @@ Note: This project was carried out using a minikube cluster for testing purposes
     ├── output.tf
     └── variable.tf
 ```
+
+### Prerequisites
+
+
+---
+
+1. Docker
+2. Kubernetes Cluster
+3. GitHub Actions
+4. Terraform
+5. Bash Scripting
