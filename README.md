@@ -152,4 +152,18 @@ A quick look at what each script does:
 - **`rollback.sh`**: If something goes wrong, this script lets you roll back your deployment to the previous stable version easily. By running `./rollback.sh <deployment name>` , my app rolls back to previous working version.
 
 
+### Infrastructure as Code (Terraform)
+
+Provisioned my infrastructure using IAC for best practice, versioning, and reusability. Makes automated provisioning secure and fast. Because I made use of a Minikube cluster, I provisioned my EC2 instance, security group(firewall), SSH Key and Elastic IP address.
+
+Here’s what each Terraform file does:
+
+- **`main.tf`**: This is the main configuration file that defines the cloud infrastructure I want to create (like servers, networks, and storage).
+
+- **`output.tf`**: Specifies what useful information Terraform should show me after deploying (Private and Public IP address).
+
+- **`variable.tf`**: Defines the input variables I confugured when I run Terraform (like region, firewall or environment name).
+
+
+
 
