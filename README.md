@@ -1,4 +1,4 @@
-# Production-Ready Infrastructure Deployment
+# Production-Ready Service Deployment
 
 ---
 
@@ -50,3 +50,7 @@ Note: This project was carried out using a minikube cluster for testing purposes
 3. GitHub Actions
 4. Terraform
 5. Bash Scripting
+
+### Overview
+This project involves containerizing a FastAPI backend service that is scalable and production ready. The application is configured to expose prometheus metrics for observability and monitoring. Built, tested and deployed using GitHub Actions.
+
