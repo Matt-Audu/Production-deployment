@@ -73,5 +73,6 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: 22
           script: |
-            chmod +x deploy.sh
+            chmod +x deploy.sh health-check.sh
             ./deploy.sh
+            ./health-check.sh
