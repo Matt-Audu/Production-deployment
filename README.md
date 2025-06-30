@@ -99,4 +99,24 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
   4. Because I decided to use a Minikube cluster, my workflow will SSH into my minikube server and run my deployment script to deploy the backend service in my kubernetes cluster.
 
 
-### Kubernetes Manifest Files
+### Kubernetes Manifests
+
+- **`configmap.yml`**: Stores general configuration settings for my application(like environment name or feature flags) so I don’t have to hard-code them.
+
+- **`deployment.yml`**: Defines *how* my app should run on Kubernetes, how many copies (pods) to run, which Docker image to use, and basic health checks.
+
+- **`hpa.yml`**: The Horizontal Pod Autoscaler automatically adds or removes pods based on CPU or memory usage, so my app can handle more traffic when needed.
+
+- **`ingress.yml`**: Manages external access to my app (like routing traffic from your domain name to the right service) and handles things like SSL and CORS rules. Ingress also works like a load balancer for my application.
+
+- **`networkpolicy.yml`**: Controls what network traffic is allowed to reach my pods, adding an extra layer of security.
+
+- **`secret.yml`**: Stores sensitive data e.g Docker Hub username and password that my application needs but shouldn’t be hard-coded or visible in plain text.
+
+- **`service.yml`**: Creates a stable internal IP and DNS name for backend service so other services or users can reach it reliably inside the cluster.
+
+- **`serviceaccount.yml`**: Gives my backend app permissions to interact with the Kubernetes API securely, using only the access it needs.
+
+- **`pod-security.yml`**: Defines rules that control what my pods are allowed to do (for example, restricting running as root), helping keep your cluster safer.
+
+- **`rbac.yml`**: Sets up Role-Based Access Control (RBAC) to manage who (or what) can access specific Kubernetes resources, ensuring only the right accounts have permission.
