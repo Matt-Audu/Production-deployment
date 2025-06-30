@@ -88,9 +88,9 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ### GitHub Actions Workflow
 + [Continuous Integration:](https://github.com/Matt-Audu/Production-deployment/blob/main/.github/workflows/integration.yml) 
-- I configured my workflow to run a pytest for testing API endpoints "GET`/items`" "GET`/health`" and "POST`/items`" and it automatically fails the workflow if any test is not successful. 
-- Integrated docker trivy scanner to scan my dockerfile and docker images. The workflow fails if vulnerabilities are detected in my dockerfile and docker images. This will minimize production issues and improve security. 
-- My integration pipeline is triggered by a pull request to the main branch, in this case all application test are performed before merging into "main" branch for deployment.
+* I configured my workflow to run a pytest for testing API endpoints "GET`/items`" "GET`/health`" and "POST`/items`" and it automatically fails the workflow if any test is not successful. 
+* Integrated docker trivy scanner to scan my dockerfile and docker images. The workflow fails if vulnerabilities are detected in my dockerfile and docker images. This will minimize production issues and improve security. 
+* My integration pipeline is triggered by a pull request to the main branch, in this case all application test are performed before merging into "main" branch for deployment.
 
 + [Continuous Deployment:](https://github.com/Matt-Audu/Production-deployment/blob/main/.github/workflows/deploy.yml) 
 - After my image has been scanned successfully with no vulnerabilities, my deployment workflow is set up to build and tag my docker images. 
