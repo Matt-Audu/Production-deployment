@@ -55,3 +55,34 @@ Note: This project was carried out using a minikube cluster for testing purposes
 ### Overview
 This project involves containerizing a FastAPI backend service that is scalable and production ready. The application is configured to expose prometheus metrics for observability and monitoring. Built, tested and deployed using GitHub Actions.
 
+### Multi Stage Build
+Made use of Multi stage build in my docker file that reduced my application size to 260MB. I prioritised the use of slim based images that are lightweight and run faster builds. Configured docker to run the container as `appuser` and not root, which is a best practice for security.
+
+```
+FROM python:3.12-slim AS builder
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# Final stage
+FROM python:3.12-slim
+
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+
+WORKDIR /app
+
+COPY --from=builder /usr/local /usr/local
+COPY --from=builder /app /app
+
+USER appuser
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
