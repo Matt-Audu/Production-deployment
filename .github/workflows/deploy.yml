@@ -1,7 +1,9 @@
 name: production-cd
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - mains
 
 jobs:
   Build_and_Push:

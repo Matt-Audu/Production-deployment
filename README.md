@@ -165,5 +165,9 @@ Here’s what each Terraform file does:
 - **`variable.tf`**: Defines the input variables I confugured when I run Terraform (like region, firewall or environment name).
 
 
+## Contributing
+
+- Fork the repository
+
 
 
